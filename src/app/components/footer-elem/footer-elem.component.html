@@ -1,0 +1,33 @@
+<footer class="footer">
+  <div class="footer__legals">
+    <img [src]="logoSrc" alt="Logo" class="footer__logo">
+    <p>© XYZ Computers LLC, 2022-2024. All rights reserved</p>
+    <p>No information on this site can be considered as an offer without prior agreement or approval by XYZ Computers LLC.</p>
+    <p>By using our site, you agree to our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+  </div>
+  <div class="footer__catalog">
+    <h3>Catalog</h3>
+    <ul class="footer__catalog-list">
+      @for (category of productList.ProductCategories; track category) {
+        <li class="footer__catalog-item"><a routerLink="/categories/{{category}}">{{capitalize(category)}}</a></li>
+      }
+    </ul>
+  </div>
+  <div class="footer__contacts">
+    <h3>Contacts</h3>
+    <div class="footer__contacts-details">
+      <p class="footer__contacts-phone">+7 999 999 99 99</p>
+      <div class="footer__contacts-social">
+        <a href="#" class="footer__contacts-social-item">
+          <img src="assets/icons/telegram.svg" alt="Telegram">
+        </a>
+        <a href="#" class="footer__contacts-social-item">
+          <img src="assets/icons/whatsapp.svg" alt="Whatsapp">
+        </a>
+        <a href="#" class="footer__contacts-social-item">
+          <img src="assets/icons/vk.svg" alt="VK">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

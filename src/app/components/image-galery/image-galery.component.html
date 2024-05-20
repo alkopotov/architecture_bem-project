@@ -1,0 +1,17 @@
+@if (images) {
+  <section class="image-galery">
+    <div class="image-galery__sidebar">
+  
+      @for(image of images; track $index) {
+        <div class="image-galery__sidebar-item" (click)="changeImage($index)">
+          <img [src]="image" [class]="$index === selectedIndex ? 'image-galery__sidebar-item-image image-galery__sidebar-item-image_bordered' : 'image-galery__sidebar-item-image'" class="image-galery__sidebar-item-image">
+        </div>
+      }
+    </div>
+    <div class="image-galery__main">
+      <img [src]="images[selectedIndex]" class="image-galery__main-image">
+    </div>
+  
+  </section>
+}
+

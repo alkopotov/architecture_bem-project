@@ -1,0 +1,71 @@
+.footer {
+  display: flex;
+  padding:  20px calc(50vw - 600px);
+  background-color: var(--footer-color);
+  gap: 30px;
+  height: 250px;
+  position: relative;
+}
+.footer__logo {
+  height: 40px;
+  background: none;
+}
+.footer__legals {
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  width: 360px
+}
+
+.footer__catalog {
+  width: auto;
+  overflow-x: visible;
+}
+
+.footer__catalog-list {
+  display: flex;
+  width: 460px;
+  height: 180px;
+  flex-direction: column;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  flex-wrap: wrap;
+  gap: 3px 24px;
+  overflow-x: visible;
+}
+.footer__catalog-item {
+  list-style: none;
+}
+
+.footer__catalog-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer__contacts-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.footer__contacts-social {
+  display: flex;
+  gap: 10px;
+}
+.footer__contacts-phone {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 24px;
+}

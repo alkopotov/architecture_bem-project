@@ -1,0 +1,10 @@
+<section class="about-banner">
+  @for(keyFact of keyFacts; track keyFact.id) {
+    <div class="about-banner__key-fact">
+      <div class="about-banner__key-fact-icon-wrapper"><img [src]="keyFact.icon" class="about-banner__key-fact-img"></div>
+      <h2 class="about-banner__key-fact-title">{{keyFact.title}}</h2>
+      <p class="about-banner__key-fact-description">{{keyFact.description}}</p>
+
+    </div>
+  }
+</section>

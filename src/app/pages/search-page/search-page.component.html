@@ -1,0 +1,10 @@
+@if(productListService.displayedProducts.length == 0) {
+  <h1 class="search-page__header">Nothing found</h1>
+} @else {
+  <h1 class="search-page__header">Found {{productListService.displayedProducts.length}} products</h1>
+  <main class="search-list">
+    @for (product of productListService.displayedProducts; track product.id) {
+      <app-product-card [product]="product"></app-product-card>
+    }
+  </main>
+}

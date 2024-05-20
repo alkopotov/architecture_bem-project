@@ -1,0 +1,14 @@
+<h1 class="product-list-page__header">Our products</h1>
+<main class="category-list">
+  @for (category of productListService.ProductCategories; track category) {
+    <section class="category-list__category">
+      <h2 class="category__title">{{capitalize(category)}}</h2>
+      <div class="category__products">
+        @for (product of productListService.getProductListByCategory(category); track product.id) {
+          <app-product-card [product]="product"></app-product-card>
+        }
+      </div>
+    </section>
+    <div class="category-list__separator"></div>
+  }
+</main>

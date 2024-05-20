@@ -1,0 +1,62 @@
+<h1 class="cart-page__header">Shopping cart</h1>
+
+@if (cartService.numberOfProducts == 0) {
+  <main class="cart-page__content">
+    <h2>Your cart is empty</h2>
+    <button [routerLink]="['/products']" class="cart-page__button-return">Return to shopping</button>
+  </main>
+} @else {
+  <main class="cart-page__content">
+    <section class="cart-page__product-list">
+      @for (product of cartService.cartList; track product.id) {
+        <div class="cart-page__product-card">
+          <img [src]="product.images[0]" [alt]="product.title + ' image'" class="cart-page__product-image">
+          <div class="cart-page__product-info">
+            <h2 class="cart-page__product-title">{{product.title}}</h2>
+            <div class="cart-page__product-details">
+              <div class="cart-page__product-counter-wrapper">
+                <div class="cart-page__product-decrement" (click)="cartService.changeAmount(product.id, -1)">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>                  
+                </div>
+                  <div class="cart-page__product-counter">{{product.numberInCart}}</div>
+                <div class="cart-page__product-increment" (click)="cartService.changeAmount(product.id, 1)">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 5V19" stroke="#8B8B8B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>  
+                </div>
+              </div>
+              <div class="cart-page__product-cost">
+                <h3 class="cart-page__product-final-cost">{{product.price * product.numberInCart * (1- product.discountPercentage / 100) | currency}}</h3>
+                <h3 class="cart-page__product-initial-cost">{{product.price * product.numberInCart | currency}}</h3>               
+              </div>
+            </div>
+          </div>
+          <div class="cart-page__product-close" (click)="handleRemoveFromCart($event, product.id)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18" stroke="#282828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 6L18 18" stroke="#282828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>     
+          </div>
+        </div>
+      }
+    </section>
+    <form action="" class="cart-page__order-form">
+      <h2 class="cart-page__order-header">Order details</h2>
+      <p class="cart-page__order-info"> {{cartService.numberOfProducts + (cartService.numberOfProducts > 1 ? ' positions' : ' position')}}, {{cartService.numberOfItems}} {{cartService.numberOfItems > 1 ? ' items' : ' item'}}</p>
+      <div class="cart-page__order-sum">
+        <h4 class="cart-page__order-total">Total:</h4>
+        <h4 class="cart-page__order-cost">{{cartService.sumOrder | currency}}</h4>
+      </div>
+        <input type="text" placeholder="Name" class="cart-page__order-input">
+        <input type="text" placeholder="Phone" class="cart-page__order-input">
+        <input type="text" placeholder="Email"
+        class="cart-page__order-input">
+        <input type="submit" value="Order" class="cart-page__order-submit">
+    </form>
+    
+  </main>
+}
+

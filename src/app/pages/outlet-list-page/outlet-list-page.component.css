@@ -1,0 +1,37 @@
+.outlet-list__map {
+  height: 330px;
+  border-radius: 12px;
+}
+
+.outlet-list__header {
+  font-family: 'Inter', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--header-text-color);
+  text-align: center;
+  margin-top: 160px;
+  margin-bottom: 60px;
+}
+
+.outlet-list__banners {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.outlet-list__work-hours {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(91.71deg, #77C9FF 0%, #80B3FF 99.62%);
+  color: white;
+  height: 120px;
+  border-radius: 16px;
+  padding: 0 20px;
+}
+
+.outlet-list__delivery-icon {
+  width: 80px;
+  height: 80px;
+}

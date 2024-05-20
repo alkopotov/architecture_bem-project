@@ -1,0 +1,23 @@
+
+<h1 class="best-offers-list__header">Our best offers!</h1>
+<section class="best-offers-list">
+  @for (product of productList; track product.id) {
+    <a [routerLink]="['/products', product.id]">
+      <div class="best-offers-list__product">
+        <h3 class="best-offers-list__product-title">{{product.title}}</h3>
+      <div class="best-offers-list__product-image-wrapper">
+        <img [src]="product.images[0]" class="best-offers-list__product-image">
+      </div>
+      <div class="best-offers-list__product-price-wrapper">
+        <p class="best-offers-list__product-normal-price"> Price: {{product.price}}$</p>
+        <p class="best-offers-list__product-offer-price">Offer: {{ roundNumber(product.price - product.price * product.discountPercentage / 100)}}$</p>
+      </div>
+   
+    <p class="best-offers-list__product-discount">Discount: {{roundNumber(product.discountPercentage)}}%  <br>
+     saving <span>{{roundNumber(product.price * product.discountPercentage / 100)}}$</span></p>
+   
+  </div>
+    </a>
+  }
+
+</section>

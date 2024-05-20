@@ -1,0 +1,77 @@
+.banner-promo {
+  margin-top: 100px;
+  height: 420px;
+  padding: 40px 10px;
+  background-color: rgb(48, 48, 48);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 16px 0px;
+}
+
+.banner-promo__image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.banner-promo__content {
+  display: flex;
+  gap: 40px;
+}
+
+.banner-promo__title {
+  color: beige;
+  font-size: 36px;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 20px;
+}
+
+.banner-promo__text {
+  color: beige;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.banner-promo__text-title {
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.banner-promo__text-description {
+  font-size: 14px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 100;
+  line-height: 24px;
+  letter-spacing: 1px;
+}
+
+.banner-promo__button {
+  width: 160px;
+  height: 40px;
+  background: beige;
+  color: rgb(48, 48, 47);
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+  align-self: center;
+  align-self: flex-start;
+}
+
+.banner-promo__text-price {
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: var(--blue-color-light);
+}
+
