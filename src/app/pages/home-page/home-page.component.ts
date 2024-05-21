@@ -4,11 +4,12 @@ import { AboutBannerComponent } from '../../components/about-banner/about-banner
 import { ProductListService } from '../../services/product-list.service';
 import { BannerPromoComponent } from '../../components/banner-promo/banner-promo.component';
 import { LastItemsListComponent } from '../../components/last-items-list/last-items-list.component';
+import { BannerAdvantagesComponent } from '../../components/banner-advantages/banner-advantages.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [BestOffersListComponent, AboutBannerComponent, BannerPromoComponent, LastItemsListComponent],
+  imports: [BestOffersListComponent, AboutBannerComponent, BannerPromoComponent, LastItemsListComponent, BannerAdvantagesComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
