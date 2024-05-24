@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, InjectionToken, inject } from '@angular/core';
 import { BASE_URL } from './product-list.service';
-import { StorageService } from './storage.service';
+// import { StorageService } from './storage.service';
 
 
 @Injectable({
@@ -9,39 +9,39 @@ import { StorageService } from './storage.service';
 })
 export class CartService {
 
-  constructor(public storage: StorageService, private http: HttpClient) { 
+  constructor( private http: HttpClient) { 
     
   }
 
-  public storedProductIds: string[] = this.storage.keys();
+  public storedProductIds: string[] = Object.keys(localStorage) as string[] || Object.keys(localStorage);
 
   public numberOfProducts: number = this.storedProductIds.length;
 
   public get storedIds(): string[] {
-    return this.storage.keys();
+    return Object.keys(localStorage) as string[];
   }
 
 
   public cartList: any[] = []
 
   public getNumberOfProducts (): number {
-    return this.storage.keys().length;
+    return Object.keys(localStorage).length;
   }
 
   public updateNumberOfProducts (): void {
-    this.numberOfProducts = this.storage.keys().length;
+    this.numberOfProducts = Object.keys(localStorage).length;
   }
   
 
   public deleteProduct (id: string): void {
-    this.storage.remove(id);
+    localStorage.removeItem(id);
   }
 
   public addToCart(id: string, amount: number): void {
-     if (this.storage.get(id) === undefined) {
-      this.storage.set(id, amount.toString());
+     if (localStorage.getItem(id) === undefined) {
+      localStorage.setItem(id, amount.toString());
      } else {
-      this.storage.set(id, (this.storage.get(id) ?? 0 + amount).toString());
+      localStorage.setItem(id, (localStorage.getItem(id) ?? 0 + amount).toString());
      }
   }
 
@@ -54,7 +54,7 @@ export class CartService {
     } else  if (+product.numberInCart + amount > product.stock) {
       return
     } else {
-      this.storage.set(id, (+product.numberInCart + amount).toString());
+      localStorage.setItem(id, (+product.numberInCart + amount).toString());
       this.cartList.map((product: any) => {
         if (product.id === id) {
           product.numberInCart = +product.numberInCart + amount;
@@ -69,9 +69,9 @@ export class CartService {
     if (this.storedIds.length > 0) {
       this.storedIds.forEach((id: string) => {
         this.http.get(BASE_URL + '/products/' + id).subscribe((data: any) => {
-          let numberInCart = this.storage.get(id) || 0;
+          let numberInCart = localStorage.getItem(id) || 0;
           data.numberInCart = +numberInCart > +data.stock ? +data.stock : +numberInCart;
-          this.storage.set(id, data.numberInCart);
+          localStorage.setItem(id, data.numberInCart);
           res.push(data);
         })
       })

@@ -26,11 +26,29 @@
   text-align: center;
 }
 
+.product-card__final-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cart-color-green);
+  text-align: center;
+}
+
+.product-card__initial-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: line-through;
+}
+
 .product-card__button-icon {
   width: 22px;
   height: 22px;
   fill: white;
 }
+
+
 
 .product-card__button {
   width: 150px;
