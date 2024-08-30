@@ -1,5 +1,5 @@
 <app-header-elem></app-header-elem>
 <main class="wrapper">
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
 </main>
 <app-footer-elem></app-footer-elem>

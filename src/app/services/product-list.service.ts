@@ -53,6 +53,6 @@ export class ProductListService {
   }
 
   public get minSaldo(): any[] {
-    return [...this.productList].sort((a, b) => a.stock - b.stock).slice(0, 6);
+    return [...this.productList].filter((product: any) => product.stock > 0).sort((a, b) => a.stock - b.stock).slice(0, 6);
   }
 }
