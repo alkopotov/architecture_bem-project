@@ -1,4 +1,4 @@
-import { Component, OnInit, inject} from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, inject} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './header-elem.component.html',
   styleUrl: './header-elem.component.css'
 })
-export class HeaderElemComponent implements OnInit{
+export class HeaderElemComponent {
 
 
   constructor() {
@@ -28,10 +28,4 @@ export class HeaderElemComponent implements OnInit{
 
   public logoSrc: string = 'assets/icons/shop_logo.svg';
   public searchQuery: string = '';
-  
-
-  ngOnInit(): void {
-    this.cartService.getNumberOfProducts();
-  }
-  
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, InjectionToken, inject } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BASE_URL } from './product-list.service';
-// import { StorageService } from './storage.service';
+
 
 
 @Injectable({
@@ -9,39 +9,66 @@ import { BASE_URL } from './product-list.service';
 })
 export class CartService {
 
-  constructor( private http: HttpClient) { 
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) { 
     
   }
 
-  public storedProductIds: string[] = Object.keys(localStorage) as string[] || Object.keys(localStorage);
+  public get storedProductIds(): string[] {
+    if (this.platformId === 'browser') {
+      return Object.keys(localStorage) as string[];
+    } else {
+      return [];
+    }
+  }
+
 
   public numberOfProducts: number = this.storedProductIds.length;
 
-  public get storedIds(): string[] {
-    return Object.keys(localStorage) as string[];
+  public storedIds(): string[] {
+    if (this.platformId === 'browser') {
+      return Object.keys(localStorage) as string[];
+    } else {
+      return [];
+    }
   }
 
 
   public cartList: any[] = []
 
   public getNumberOfProducts (): number {
-    return Object.keys(localStorage).length;
+    if(this.platformId === 'browser') {
+      return Object.keys(localStorage).length;
+    } else {
+      return 0;
+    }
+   
   }
 
   public updateNumberOfProducts (): void {
-    this.numberOfProducts = Object.keys(localStorage).length;
+    if (this.platformId === 'browser') {
+      this.numberOfProducts = Object.keys(localStorage).length;
+    }
   }
   
 
-  public deleteProduct (id: string): void {
-    localStorage.removeItem(id);
+  public deleteProduct (id: string): void { 
+    if (this.platformId === 'browser') {
+      localStorage.removeItem(id);
+    }
   }
 
   public addToCart(id: string, amount: number): void {
      if (localStorage.getItem(id) === undefined) {
-      localStorage.setItem(id, amount.toString());
+      if(this.platformId === 'browser') {
+        localStorage.setItem(id, amount.toString());
+      }
      } else {
-      localStorage.setItem(id, (localStorage.getItem(id) ?? 0 + amount).toString());
+      if(this.platformId === 'browser') {
+        localStorage.setItem(id, (localStorage.getItem(id) ?? 0 + amount).toString());
+      }
      }
   }
 
@@ -54,20 +81,22 @@ export class CartService {
     } else  if (+product.numberInCart + amount > product.stock) {
       return
     } else {
-      localStorage.setItem(id, (+product.numberInCart + amount).toString());
-      this.cartList.map((product: any) => {
-        if (product.id === id) {
-          product.numberInCart = +product.numberInCart + amount;
-        }
-      })
+      if(this.platformId === 'browser') {
+        localStorage.setItem(id, (+product.numberInCart + amount).toString());
+        this.cartList.map((product: any) => {
+          if (product.id === id) {
+            product.numberInCart = +product.numberInCart + amount;
+          }
+        })
+      }
     }
 }
 
 
   public getCartList(): void {
     let res: any[] = [];
-    if (this.storedIds.length > 0) {
-      this.storedIds.forEach((id: string) => {
+    if (this.storedIds().length > 0) {
+      this.storedIds().forEach((id: string) => {
         this.http.get(BASE_URL + '/products/' + id).subscribe((data: any) => {
           let numberInCart = localStorage.getItem(id) || 0;
           data.numberInCart = +numberInCart > +data.stock ? +data.stock : +numberInCart;
